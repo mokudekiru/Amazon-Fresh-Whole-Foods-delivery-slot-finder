@@ -7,6 +7,7 @@ set unknown_page_msg to "Unknown amazon page was loaded. try to manually navigat
 set slot_site_url to "https://www.amazon.com/gp/buy/shipoptionselect/handlers/display.html?hasWorkingJavascript=1"
 set slot_page_keyword to "Schedule your order"
 set no_slot_keyword to "No delivery windows available"
+set no_slot_keyword_doorstep to "No doorstep delivery windows"
 set is_first_run to true
 set auto_ignore_oos to true
 
@@ -238,7 +239,7 @@ if javascriptEnabled then
 		-- PROCESS PAGE CONTENTS:
 		
 		-- no delivery slots available
-		if siteText contains no_slot_keyword then
+		if (siteText contains no_slot_keyword or siteText contains no_slot_keyword_doorstep) then
 			
 			-- closes the tab since no slot was found
 			tell application "Safari"
